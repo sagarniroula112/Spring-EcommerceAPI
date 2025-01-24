@@ -9,5 +9,6 @@ public interface UserService {
     void updateUser(User user);
     void deleteUser(int id);
     User getUserById(int id);
+    User getUserByUsernameAndPassword(String username, String password);
     List<User> getAllUsers();
 }

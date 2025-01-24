@@ -26,4 +26,44 @@ public class Cart {
         this.totalAmount = 0;
         this.checkedOut = false;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
+    }
+
+    public List<Cartitem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<Cartitem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
