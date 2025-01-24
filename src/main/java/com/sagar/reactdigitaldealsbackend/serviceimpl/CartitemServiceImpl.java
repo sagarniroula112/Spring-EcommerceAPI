@@ -1,5 +1,6 @@
 package com.sagar.reactdigitaldealsbackend.serviceimpl;
 
+import com.sagar.reactdigitaldealsbackend.model.Cart;
 import com.sagar.reactdigitaldealsbackend.model.Cartitem;
 import com.sagar.reactdigitaldealsbackend.model.User;
 import com.sagar.reactdigitaldealsbackend.repository.CartitemRepo;
@@ -41,7 +42,7 @@ public class CartitemServiceImpl  implements CartitemService {
     }
 
     @Override
-    public List<Cartitem> getAllCartitemsByUser(User user) {
-        return cartitemRepo.findAllByUser(user);
+    public List<Cartitem> getAllCartitemsByCart(Cart cart) {
+        return cartitemRepo.findAllByCart(cart);
     }
 }

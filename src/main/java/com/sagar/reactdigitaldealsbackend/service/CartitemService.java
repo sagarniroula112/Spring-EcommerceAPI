@@ -1,5 +1,6 @@
 package com.sagar.reactdigitaldealsbackend.service;
 
+import com.sagar.reactdigitaldealsbackend.model.Cart;
 import com.sagar.reactdigitaldealsbackend.model.Cartitem;
 import com.sagar.reactdigitaldealsbackend.model.User;
 
@@ -11,5 +12,5 @@ public interface CartitemService {
     void deleteCartitem(int id);
     Cartitem getCartitem(int id);
     List<Cartitem> getCartitems();
-    List<Cartitem> getAllCartitemsByUser(User user);
+    List<Cartitem> getAllCartitemsByCart(Cart cart);
 }

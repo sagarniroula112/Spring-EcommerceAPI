@@ -1,5 +1,6 @@
 package com.sagar.reactdigitaldealsbackend.api;
 
+import com.sagar.reactdigitaldealsbackend.model.Cart;
 import com.sagar.reactdigitaldealsbackend.model.Cartitem;
 import com.sagar.reactdigitaldealsbackend.model.User;
 import com.sagar.reactdigitaldealsbackend.service.CartService;
@@ -23,8 +24,11 @@ public class CartController {
     private ProductService productService;
 
     @GetMapping("/")
-    private List<Cartitem> getCartItems(User user){
-        return cartitemService.getAllCartitemsByUser(user);
+    private List<Cartitem> getCartItems(HttpSession session) {
+        User user = (User) session.getAttribute("activeUser");
+        Cart cart = user.getCart();
+        System.out.println(cartitemService.getAllCartitemsByCart(cart));
+        return cartitemService.getAllCartitemsByCart(cart);
     }
 
     @PostMapping("/add/{id}")
@@ -35,11 +39,13 @@ public class CartController {
 
         Cartitem ci = new Cartitem();
         ci.setProduct(productService.getProductById(id));
-        ci.setUser(activeUser);
         ci.setPurchaseQuantity(1);
         ci.setPurchaseAmount(productService.getProductById(id).getDiscountedPrice());
         ci.setCart(activeUser.getCart());
         cartitemService.addCartitem(ci);
 
+        Cart c = activeUser.getCart();
+        c.setTotalAmount(c.getTotalAmount() + productService.getProductById(id).getDiscountedPrice());
+        cartService.updateCart(c);
     }
 }

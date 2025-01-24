@@ -8,6 +8,7 @@ public class Cartitem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int purchaseQuantity;
     private double purchaseAmount;
 
@@ -15,11 +16,6 @@ public class Cartitem {
     @JoinColumn(name="product_id")
     private Product product;
     // Many cartitems can be linked to a single product.
-
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-    // Many cartitems can be linked to a user.
 
     @ManyToOne
     @JoinColumn(name="cart_id")
@@ -60,19 +56,22 @@ public class Cartitem {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Cart getCart() {
         return cart;
     }
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    @Override
+    public String toString() {
+        return "Cartitem{" +
+                "id=" + id +
+                ", purchaseQuantity=" + purchaseQuantity +
+                ", purchaseAmount=" + purchaseAmount +
+                ", product=" + product +
+                ", cart=" + cart +
+                '}';
     }
 }
