@@ -19,4 +19,6 @@ public class User {
     private String phone;
     private String address;
     private String username;
+
+    // This will connect to a "Cart" and a cart must automatically be created when a user is registered.
 }

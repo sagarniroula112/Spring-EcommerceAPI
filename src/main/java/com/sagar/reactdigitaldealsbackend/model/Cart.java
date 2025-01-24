@@ -6,19 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Product {
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
-    private String description;
-    private double price;
-    private String image;
-    private double discount;
-    private double discountedPrice;
-    private int stockQuantity;
-    private double rating;
+    private double totalAmount;
+    private boolean checkedOut;
 
-    // This will connect to "Category".
+    // This will connect to "Cartitem" and a "User".
 }
