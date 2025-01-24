@@ -1,9 +1,6 @@
 package com.sagar.reactdigitaldealsbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Product {
@@ -19,6 +16,10 @@ public class Product {
     private double discountedPrice;
     private int stockQuantity;
     private double rating;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="category_id")
+    private Category category;
 
     // This will connect to "Category".
 }
