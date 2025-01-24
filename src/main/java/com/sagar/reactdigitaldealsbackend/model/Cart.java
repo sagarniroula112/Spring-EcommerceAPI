@@ -22,6 +22,7 @@ public class Cart {
     // This will connect to "Cartitem" and a "User".
 
     public Cart() {
+        this.cartItems = null;
         this.totalAmount = 0;
         this.checkedOut = false;
     }
