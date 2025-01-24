@@ -27,7 +27,7 @@ public class UserController {
         User userInDB = userServiceImpl.getUserByUsernameAndPassword(user.getUsername(), user.getPassword());
 
         if (userInDB != null && user.getUsername().equals(userInDB.getUsername()) && user.getPassword().equals(userInDB.getPassword())) {
-            // Create a map to represent the response data
+            // a map to represent the response data
             Map<String, Object> response = new HashMap<>();
             response.put("id", userInDB.getId());
             response.put("username", userInDB.getUsername());
