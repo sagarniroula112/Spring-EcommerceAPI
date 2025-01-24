@@ -39,4 +39,60 @@ public class Order {
     private List<Cartitemdummy> cartitemdummys;
 
     // This will connect to "User", "Cartitem", "Cartitemdummy" and "Product".
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getDeliveryStatus() {
+        return deliveryStatus;
+    }
+
+    public void setDeliveryStatus(String deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Cartitem> getCartitems() {
+        return cartitems;
+    }
+
+    public void setCartitems(List<Cartitem> cartitems) {
+        this.cartitems = cartitems;
+    }
+
+    public List<Cartitemdummy> getCartitemdummys() {
+        return cartitemdummys;
+    }
+
+    public void setCartitemdummys(List<Cartitemdummy> cartitemdummys) {
+        this.cartitemdummys = cartitemdummys;
+    }
 }
