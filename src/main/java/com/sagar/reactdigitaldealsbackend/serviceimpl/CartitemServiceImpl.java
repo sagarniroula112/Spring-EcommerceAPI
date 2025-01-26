@@ -32,7 +32,7 @@ public class CartitemServiceImpl  implements CartitemService {
     }
 
     @Override
-    public Cartitem getCartitem(int id) {
+    public Cartitem getCartitemById(int id) {
         return cartitemRepo.findById(id).get();
     }
 

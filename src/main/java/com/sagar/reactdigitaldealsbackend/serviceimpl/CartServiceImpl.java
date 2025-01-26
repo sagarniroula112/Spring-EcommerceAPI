@@ -1,6 +1,7 @@
 package com.sagar.reactdigitaldealsbackend.serviceimpl;
 
 import com.sagar.reactdigitaldealsbackend.model.Cart;
+import com.sagar.reactdigitaldealsbackend.model.User;
 import com.sagar.reactdigitaldealsbackend.repository.CartRepo;
 import com.sagar.reactdigitaldealsbackend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> getAllCarts() {
         return cartRepo.findAll();
+    }
+
+    @Override
+    public Cart getCartByUser(User user) {
+        return cartRepo.findByUser(user);
     }
 }

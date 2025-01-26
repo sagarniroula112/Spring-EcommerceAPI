@@ -10,7 +10,7 @@ public interface CartitemService {
     void addCartitem(Cartitem cartitem);
     void updateCartitem(Cartitem cartitem);
     void deleteCartitem(int id);
-    Cartitem getCartitem(int id);
+    Cartitem getCartitemById(int id);
     List<Cartitem> getCartitems();
     List<Cartitem> getAllCartitemsByCart(Cart cart);
 }
