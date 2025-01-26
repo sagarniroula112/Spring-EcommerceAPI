@@ -13,7 +13,7 @@ public class Cart {
     private double totalAmount;
     private boolean checkedOut;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cartitem> cartItems;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

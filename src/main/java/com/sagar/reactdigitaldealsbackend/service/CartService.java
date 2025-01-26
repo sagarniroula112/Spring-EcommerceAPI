@@ -12,4 +12,5 @@ public interface CartService {
     Cart getCartById(int id);
     List<Cart> getAllCarts();
     Cart getCartByUser(User user);
+    Double calculateCartTotal(Cart cart);
 }
