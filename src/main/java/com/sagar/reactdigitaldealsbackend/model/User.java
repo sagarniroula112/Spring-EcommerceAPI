@@ -18,9 +18,9 @@ public class User {
     private String address;
     private String username;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="cart_id")
-    private Cart cart;
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name="cart_id")
+//    private Cart cart;
     // Cascade: If a user is saved/updated/deleted/reloaded/detached, the Cart will also be saved/
     // updated/deleted/reloaded/detached.
     // Cascade makes sure that the Cart is always in sync with the User.
@@ -75,14 +75,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public int getId() {

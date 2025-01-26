@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,15 +50,12 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public RedirectView logout(HttpSession session) {
+    public ResponseEntity<Void> logout(HttpSession session) {
         if (session != null) {
             logger.info("Session ID before logout: " + session.getId());
             session.invalidate(); // Invalidate the session
         }
-        // Redirect to the frontend login page
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:5173/login");
-        return redirectView;
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/register")
@@ -68,7 +64,6 @@ public class UserController {
             System.out.println(user.getEmail() + " " + user.getUsername());
             Cart c = new Cart();
 
-            user.setCart(c);
             c.setUser(user);
             userServiceImpl.addUser(user);
             cartServiceImpl.addCart(c);
