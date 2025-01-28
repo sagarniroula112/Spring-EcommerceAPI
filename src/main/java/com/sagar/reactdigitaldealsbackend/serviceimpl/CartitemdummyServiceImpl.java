@@ -1,5 +1,6 @@
 package com.sagar.reactdigitaldealsbackend.serviceimpl;
 
+import com.sagar.reactdigitaldealsbackend.model.Cart;
 import com.sagar.reactdigitaldealsbackend.model.Cartitemdummy;
 import com.sagar.reactdigitaldealsbackend.repository.CartitemdummyRepo;
 import com.sagar.reactdigitaldealsbackend.service.CartitemdummyService;
@@ -36,5 +37,15 @@ public class CartitemdummyServiceImpl implements CartitemdummyService {
     @Override
     public List<Cartitemdummy> getAllCartitemdummies() {
         return cartitemdummyRepo.findAll();
+    }
+
+    @Override
+    public List<Cartitemdummy> getAllCartitemdummiesByCart(Cart cart) {
+        return cartitemdummyRepo.findAllByCart(cart);
+    }
+
+    @Override
+    public List<Cartitemdummy> getAllCartitemdummiesByCartAndOrderId(Cart cart, int orderId) {
+        return cartitemdummyRepo.findAllByCartAndOrderId(cart, orderId);
     }
 }

@@ -1,6 +1,7 @@
 package com.sagar.reactdigitaldealsbackend.serviceimpl;
 
 import com.sagar.reactdigitaldealsbackend.model.Order;
+import com.sagar.reactdigitaldealsbackend.model.User;
 import com.sagar.reactdigitaldealsbackend.repository.OrderRepo;
 import com.sagar.reactdigitaldealsbackend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAllOrders() {
         return orderRepo.findAll();
+    }
+
+    @Override
+    public List<Order> getAllOrdersByUser(User user) {
+        return orderRepo.findAllByUser(user);
     }
 }

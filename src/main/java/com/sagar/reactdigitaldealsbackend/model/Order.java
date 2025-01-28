@@ -14,6 +14,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private double totalAmount;
     private LocalDateTime orderDate;
     private String deliveryStatus;
@@ -21,14 +22,6 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-
-    @ManyToMany
-    @JoinTable(
-            name="order_cartitem",
-            joinColumns = @JoinColumn(name="order_id"),
-            inverseJoinColumns = @JoinColumn(name = "cartitem_id")
-    )
-    private List<Cartitem> cartitems;
 
     @ManyToMany
     @JoinTable(
@@ -78,14 +71,6 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Cartitem> getCartitems() {
-        return cartitems;
-    }
-
-    public void setCartitems(List<Cartitem> cartitems) {
-        this.cartitems = cartitems;
     }
 
     public List<Cartitemdummy> getCartitemdummys() {

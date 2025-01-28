@@ -1,17 +1,16 @@
 package com.sagar.reactdigitaldealsbackend.api;
 
-import com.sagar.reactdigitaldealsbackend.model.Cart;
-import com.sagar.reactdigitaldealsbackend.model.Cartitem;
-import com.sagar.reactdigitaldealsbackend.model.Product;
-import com.sagar.reactdigitaldealsbackend.model.User;
+import com.sagar.reactdigitaldealsbackend.model.*;
 import com.sagar.reactdigitaldealsbackend.service.CartService;
 import com.sagar.reactdigitaldealsbackend.service.CartitemService;
+import com.sagar.reactdigitaldealsbackend.service.CartitemdummyService;
 import com.sagar.reactdigitaldealsbackend.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +24,8 @@ public class CartController {
     private CartitemService cartitemService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartitemdummyService cartitemdummyService;
 
     @GetMapping("/")
     private List<Cartitem> getCartItems(HttpSession session) {
@@ -54,6 +55,15 @@ public class CartController {
         ci.setCart(cartService.getCartByUser(activeUser));
         cartitemService.addCartitem(ci);
 
+        // FOR CARTITEM DUMMY
+        Cartitemdummy cid = new Cartitemdummy();
+        cid.setCart(cartService.getCartByUser(activeUser));
+        cid.setProduct(product);
+        cid.setPurchaseQuantity(quantity);
+        cid.setPurchaseAmount(product.getDiscountedPrice() * quantity);
+        cid.setDummyCreatedDateTime(LocalDateTime.now());
+        cartitemdummyService.addCartitemdummy(cid);
+
         // Update the cart's total amount
         Cart c = cartService.getCartByUser(activeUser);
         c.setTotalAmount(c.getTotalAmount() + (product.getDiscountedPrice() * quantity));
@@ -74,6 +84,8 @@ public class CartController {
         cartService.updateCart(c);
 
         cartitemService.deleteCartitem(id);
+        // FOR CARTITEM DUMMY
+        cartitemdummyService.deleteCartitemdummy(id);
     }
 
     @PutMapping("/update/{id}")
@@ -81,8 +93,15 @@ public class CartController {
         User activeUser = (User) httpSession.getAttribute("activeUser");
         int quantity = requestBody.get("quantity");
         Cartitem item = cartitemService.getCartitemById(id);
+        Cartitemdummy cid = cartitemdummyService.getCartitemdummyById(id);
+
         item.setPurchaseQuantity(quantity);
         item.setPurchaseAmount(item.getProduct().getDiscountedPrice() * quantity);
+
+        cid.setPurchaseQuantity(quantity);
+        cid.setPurchaseAmount(item.getProduct().getDiscountedPrice() * quantity);
+
+        cartitemdummyService.updateCartitemdummy(cid);
         cartitemService.updateCartitem(item);
 
         // Update the cart's total amount
