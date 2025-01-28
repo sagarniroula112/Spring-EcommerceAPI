@@ -5,10 +5,11 @@ import com.sagar.reactdigitaldealsbackend.service.CartService;
 import com.sagar.reactdigitaldealsbackend.service.CartitemService;
 import com.sagar.reactdigitaldealsbackend.service.CartitemdummyService;
 import com.sagar.reactdigitaldealsbackend.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cart")
+@Tag(name="Cart API", description = "API for managing the shopping cart.")
 public class CartController {
 
     @Autowired
@@ -27,6 +29,7 @@ public class CartController {
     @Autowired
     private CartitemdummyService cartitemdummyService;
 
+    @Operation(summary = "Get all cart items", description = "Fetch all items in the cart.")
     @GetMapping("/")
     private List<Cartitem> getCartItems(HttpSession session) {
         User user = (User) session.getAttribute("activeUser");
